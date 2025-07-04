@@ -1,72 +1,95 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { motion } from "framer-motion";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+import ProductoCard from "../components/cards/productoCard.jsx";
+
 const productos = [
-	{ id: 1, nombre: "Placa de video RTX 3060", imagen: "/images/placa.png" },
-	{ id: 2, nombre: "Teclado Mecánico RGB", imagen: "/images/teclado.png" },
-	{ id: 3, nombre: "Monitor Curvo 27''", imagen: "/images/monitor.png" },
-	{ id: 4, nombre: "Gabinete Gamer", imagen: "/images/gabinete.png" },
-	{ id: 5, nombre: "Gabinete Gamer", imagen: "/images/gabinete.png" },
-	{ id: 6, nombre: "Gabinete Gamer", imagen: "/images/gabinete.png" },
-	{ id: 7, nombre: "Gabinete Gamer", imagen: "/images/gabinete.png" },
-	{ id: 8, nombre: "Gabinete Gamer", imagen: "/images/gabinete.png" },
-	{ id: 9, nombre: "Gabinete Gamer", imagen: "/images/gabinete.png" },
+	{
+		id: 1,
+		nombre: "Auriculares Gaming",
+		precio: 299.99,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 2,
+		nombre: "RAM DDR4 16GB",
+		precio: 89.99,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 3,
+		nombre: "Teclado Logitech K270",
+		precio: 20599,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 4,
+		nombre: 'Monitor 24" Full HD',
+		precio: 14999,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 5,
+		nombre: "Mouse Gamer Razer",
+		precio: 5999,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 6,
+		nombre: "Disco SSD 1TB",
+		precio: 12000,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 7,
+		nombre: "Placa de Video NVIDIA RTX 3060",
+		precio: 89999,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 8,
+		nombre: "Fuente de Poder 650W",
+		precio: 7999,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 9,
+		nombre: "Gabinete ATX Mid Tower",
+		precio: 4999,
+		imagen: "https://via.placeholder.com/100",
+	},
+	{
+		id: 10,
+		nombre: "Procesador Intel i7 12700K",
+		precio: 69999,
+		imagen: "https://via.placeholder.com/100",
+	},
 ];
 
-const Carrusel = () => {
+export default function CarruselProductos() {
 	return (
-		<section className="max-w-7xl mx-auto px-4 md:px-10 py-12">
-			<motion.h2
-				initial={{ opacity: 0, y: 20 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.6 }}
-				className="text-center text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 text-transparent bg-clip-text mb-6">
-				Lo más nuevo
-			</motion.h2>
-
+		<div className="w-full px-4 py-8">
 			<Swiper
-				slidesPerView={1}
-				spaceBetween={20}
-				breakpoints={{
-					640: { slidesPerView: 1 },
-					768: { slidesPerView: 2 },
-					1024: { slidesPerView: 3 },
-				}}
-				autoplay={{ delay: 2800 }}
-				pagination={{ clickable: true }}
+				modules={[Navigation]}
+				spaceBetween={12}
+				slidesPerView={0}
+				slidesPerGroup={1}
 				navigation
-				modules={[Autoplay, Pagination, Navigation]}
-				className="py-4">
-				{productos.map((item) => (
-					<SwiperSlide key={item.id}>
-						<motion.div
-							initial={{ opacity: 0, scale: 0.95 }}
-							whileInView={{ opacity: 1, scale: 1 }}
-							transition={{ duration: 0.4 }}
-							className="bg-gradient-to-br from-[#2e2e2e] via-[#1c1c1c] to-[#141414] border border-purple-500 rounded-2xl shadow-xl p-5 text-center hover:scale-[1.04] transition-all duration-300 ">
-							<img
-								src={item.imagen}
-								alt={item.nombre}
-								className="w-24 h-24 object-contain mx-auto mb-3"
-								onError={(e) => {
-									e.target.onerror = null;
-									e.target.src =
-										"https://via.placeholder.com/100x100?text=Imagen";
-								}}
-							/>
-							<p className="px-auto py-auto  text-sm text-gray-100 font-semibold">
-								{item.nombre}
-							</p>
-						</motion.div>
+				breakpoints={{
+					640: { slidesPerView: 2.2 },
+					768: { slidesPerView: 3.2 },
+					1024: { slidesPerView: 4.2 },
+				}}
+				style={{ paddingBottom: "50px" }} // para espacio a botones de navegación
+			>
+				{productos.map((producto) => (
+					<SwiperSlide key={producto.id}>
+						<ProductoCard producto={producto} />
 					</SwiperSlide>
 				))}
 			</Swiper>
-		</section>
+		</div>
 	);
-};
-
-export default Carrusel;
+}

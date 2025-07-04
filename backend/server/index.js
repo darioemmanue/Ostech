@@ -1,16 +1,15 @@
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import authRoutes from "../routes/auth.routes.js";
+
+dotenv.config();
 
 const app = express();
-
-// Middleware
+app.use(cors());
 app.use(express.json());
 
-// Basic route
-app.get("/", (req, res) => {
-	res.send("esta ok");
-});
+app.use("/api", authRoutes);
 
-// Start server
-app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));

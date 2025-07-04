@@ -1,0 +1,12 @@
+.swiper-button-prev,
+.swiper-button-next {
+	color: #28a745; /* un verde parecido al "En Stock" */
+	transform: scale(0.9);
+	transition: all 0.3s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+	color: #1e7e34;
+	transform: scale(1.1);
+}

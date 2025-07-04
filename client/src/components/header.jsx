@@ -94,12 +94,14 @@ export default function Header() {
 									<span>Iniciar sesión</span>
 								</motion.button>
 							</Link>
-							<motion.button
-								whileHover={{ scale: 1.1 }}
-								whileTap={{ scale: 0.95 }}
-								className="bg-white p-2 rounded-full shadow text-black hover:bg-gray-200 transition">
-								<FaShoppingCart size={20} />
-							</motion.button>
+							<Link to="/carrito">
+								<motion.button
+									whileHover={{ scale: 1.1 }}
+									whileTap={{ scale: 0.95 }}
+									className="bg-white p-2 rounded-full shadow text-black hover:bg-gray-200 transition">
+									<FaShoppingCart size={20} />
+								</motion.button>{" "}
+							</Link>
 						</motion.div>
 					</div>
 				</div>
@@ -233,10 +235,12 @@ export default function Header() {
 								</button>
 							</Link>
 
-							<button className="w-full flex items-center justify-center gap-2 bg-white text-black hover:bg-gray-200 py-2 px-4 rounded-full text-sm">
+							<Link
+								to="/carrito"
+								className="w-full flex items-center justify-center gap-2 bg-white text-black hover:bg-gray-200 py-2 px-4 rounded-full text-sm">
 								<FaShoppingCart />
 								Ver carrito
-							</button>
+							</Link>
 						</div>
 					</motion.div>
 				)}
