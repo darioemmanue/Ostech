@@ -1,7 +1,10 @@
 import { IoCartSharp } from "react-icons/io5";
 import "../../styles/productoCard.css";
+import { useCart } from "../../context/carritoContext"; // Asegurate de que la ruta sea correcta
 
 export default function ProductoCard({ producto }) {
+	const { addProduct } = useCart();
+
 	return (
 		<div className="producto-card">
 			<div className="card-inner">
@@ -21,11 +24,24 @@ export default function ProductoCard({ producto }) {
 				{/* Precio y carrito */}
 				<div className="card-footer">
 					<div className="precio">
-						<p className="monto">${producto.precio.toLocaleString("es-AR")}</p>
+						<p className="monto">
+							${Number(producto.precio).toLocaleString("es-AR")}
+						</p>
 						<p className="especial">Precio Especial</p>
 					</div>
-					<button className="carrito-btn">
-						<IoCartSharp />
+					<button
+						className="carrito-btn"
+						onClick={() =>
+							addProduct({
+								id: producto.id,
+								name: producto.nombre,
+								price: Number(producto.precio),
+								image: producto.imagen,
+								quantity: 1,
+							})
+						}
+						aria-label={`Agregar ${producto.nombre} al carrito`}>
+						<IoCartSharp size={24} />
 					</button>
 				</div>
 			</div>
